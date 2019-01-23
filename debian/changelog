@@ -1,0 +1,108 @@
+n4d-lliurex-base (0.20) bionic; urgency=high
+
+  * First bionic release
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Wed, 23 Jan 2019 12:51:22 +0100
+
+n4d-lliurex-base (0.17) xenial; urgency=medium
+
+  * Fixing n4d reload in postinst
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Wed, 15 Mar 2017 17:46:18 +0100
+
+n4d-lliurex-base (0.16) xenial; urgency=high
+
+  * Added scp functionality
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Fri, 03 Feb 2017 13:41:13 +0100
+
+n4d-lliurex-base (0.15) xenial; urgency=medium
+
+  * Added arguments to lliruex version
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Thu, 27 Oct 2016 17:31:16 +0200
+
+n4d-lliurex-base (0.14) xenial; urgency=high
+
+  * Added function to list path content by users
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 19 Jul 2016 14:53:07 +0200
+
+n4d-lliurex-base (0.13) xenial; urgency=high
+
+  * Adding (temporarily?) xmlrpclib diversion to allow unsigned certs
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Tue, 01 Mar 2016 08:50:22 +0100
+
+n4d-lliurex-base (0.12) xenial; urgency=high
+
+  * First xenial release
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 01 Feb 2016 14:34:34 +0100
+
+n4d-lliurex-base (0.11) trusty; urgency=high
+
+  * changing service restart to invoke-rc.d
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 27 Oct 2014 11:59:28 +0100
+
+n4d-lliurex-base (0.10) trusty; urgency=medium
+
+  * Reading stderr when executing lliurex-version
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 13 Oct 2014 16:22:56 +0200
+
+n4d-lliurex-base (0.9) trusty; urgency=high
+
+  * New releases for LliureX 15.06
+
+ -- Alfons Lloret Sananton <turix13@gmail.com>  Tue, 30 Sep 2014 13:45:19 +0200
+
+n4d-lliurex-base (0.8) precise; urgency=high
+
+  * Added new plugin with backup and restore functions to plugins
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Wed, 24 Sep 2014 11:30:30 +0200
+
+n4d-lliurex-base (0.7) precise; urgency=high
+
+  * Added get_backup_filename
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Tue, 16 Sep 2014 11:58:47 +0200
+
+n4d-lliurex-base (0.6) precise; urgency=high
+
+  * function to get user,password, method and class return dict
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Mon, 14 Jul 2014 12:14:56 +0200
+
+n4d-lliurex-base (0.5) precise; urgency=high
+
+  * Added function to get user,password
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Fri, 11 Jul 2014 14:17:17 +0200
+
+n4d-lliurex-base (0.4) precise; urgency=low
+
+  * UNRELEASED
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Tue, 25 Mar 2014 10:50:24 +0100
+
+n4d-lliurex-base (0.3) precise; urgency=high
+
+  * Fixed mountmanager not reporting various mounts of the same source
+  * Added function to check if a samba source is mounted by a given user
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Thu, 12 Dec 2013 09:44:24 +0100
+
+n4d-lliurex-base (0.2) precise; urgency=high
+
+  * Added restricted mount
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Thu, 04 Dec 2013 12:20:28 +0200
+
+n4d-lliurex-base (0.1) precise; urgency=high
+
+  * Initial release.
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Tue, 02 Jul 2013 11:47:36 +0200
