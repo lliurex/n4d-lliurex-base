@@ -1,0 +1,6 @@
+[SETUP]
+type=python
+path=FileUtils.py
+class=FileUtils
+[METHODS]
+(us)listDir=*

@@ -1,0 +1,6 @@
+[SETUP]
+type=python
+path=LliurexVersion.py
+class=LliurexVersion
+[METHODS]
+lliurex_version=anonymous
