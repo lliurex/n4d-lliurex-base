@@ -4,5 +4,5 @@ path=ScpManager.py
 class=ScpManager
 [METHODS]
 send_file=anonymous
-unrestricted_get_file=adm,admins
+unrestricted_get_file=sudo,admins
 (us)get_file=*
