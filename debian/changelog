@@ -1,4 +1,4 @@
-n4d-lliurex-base (0.21) bionic; urgency=high
+n4d-lliurex-base (0.22) bionic; urgency=high
 
   * Adding send_dir functionality
 
