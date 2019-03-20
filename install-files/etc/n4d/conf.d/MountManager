@@ -3,8 +3,8 @@ type=python
 path=MountManager.py
 class=MountManager
 [METHODS]
-mount=adm,admins
-umount=adm,admins
+mount=sudo,admins
+umount=sudo,admins
 mount_list=anonymous
 is_src_mounted=anonymous
 (us)restricted_mount=*

@@ -4,6 +4,7 @@ import os
 import pwd
 import grp
 import multiprocessing
+import glob
 
 
 class ScpManager:
@@ -21,7 +22,7 @@ class ScpManager:
 	#def 
 	
 	
-	def send_file(self,user,password,ip,source,dest):
+	def send_file(self,user,password,ip,source,dest,recursive=False,content_only=False):
 		
 		try:
 			
@@ -37,6 +38,32 @@ class ScpManager:
 			return {"status":False,"msg":str(e)}
 		
 	#def send_file
+	
+	
+	def send_dir(self,user,password,ip,source,dest,content_only=False):
+
+		try:
+			client=paramiko.SSHClient()
+			client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+			client.connect(ip,username=user,password=password)
+			scp_client= scp.SCPClient(client.get_transport())
+
+			if not content_only:
+				scp_client.put(source,recursive=True,remote_path=dest)	
+			else:
+				for item in glob.glob(source+"/*"):
+					if os.path.isfile(item):
+						scp_client.put(item, dest)
+					else:
+						scp_client.put(item,recursive=True,remote_path=dest)
+						
+			return {"status":True,"msg":""}
+
+		except:
+			return {"status":False,"msg":str(e)}
+			
+	#def send_dir
+	
 	
 	def _get_file(self,user,password,ip,source,dest):
 		
