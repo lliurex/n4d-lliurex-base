@@ -59,7 +59,8 @@ class ScpManager:
 						
 			return {"status":True,"msg":""}
 
-		except:
+		except Exception as e:
+			
 			return {"status":False,"msg":str(e)}
 			
 	#def send_dir
