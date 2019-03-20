@@ -1,3 +1,9 @@
+n4d-lliurex-base (0.21) bionic; urgency=high
+
+  * Adding send_dir functionality
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Wed, 20 Mar 2019 10:15:07 +0100
+
 n4d-lliurex-base (0.20) bionic; urgency=high
 
   * First bionic release
