@@ -191,10 +191,14 @@ class MountManager:
 	#def umount
 	
 	@mm_check_user
-	def restricted_umount(self,user,mounted_dir):
+	def restricted_umount(self,user,mounted_dir,lazy=False):
 	
 		try:
-			ret=self.libc.umount(mounted_dir)
+			if not lazy:
+				ret=self.libc.umount(mounted_dir)
+			else:
+				ret=self.libc.umount2(mounted_dir,ctypes.c_int(2))
+
 			if ret==0:
 				return True
 			else:
