@@ -1,3 +1,9 @@
+n4d-lliurex-base (0.23) bionic; urgency=medium
+
+  * Adding lazy umount support
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 07 Oct 2019 15:43:24 +0200
+
 n4d-lliurex-base (0.22) bionic; urgency=high
 
   * Adding send_dir functionality
