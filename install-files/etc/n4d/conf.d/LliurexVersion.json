@@ -1,0 +1,19 @@
+{
+    "SETUP": {
+        "type": "python",
+        "path": "LliurexVersion.py",
+        "class": "LliurexVersion"
+    },
+    "METHODS": {
+        "lliurex_version": {
+            "allowed_groups": [
+                "anonymous"
+            ]
+        },
+        "check_flavor": {
+            "allowed_groups": [
+                "anonymous"
+            ]
+        }
+    }
+}

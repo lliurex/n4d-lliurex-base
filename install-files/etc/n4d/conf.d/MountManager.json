@@ -1,0 +1,38 @@
+{
+    "SETUP": {
+        "type": "python",
+        "path": "MountManager.py",
+        "class": "MountManager"
+    },
+    "METHODS": {
+        "mount": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "restricted_mount": {
+            "allowed_groups": [
+                "*"
+            ],
+	    "protected_user":0
+        },
+        "umount": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "restricted_umount": {
+            "allowed_groups": [
+                "*"
+            ],
+	    "protected_user":0
+        },
+        "is_src_mounted": {
+            "allowed_groups": [
+                "anonymous"
+            ]
+        }
+    }
+}

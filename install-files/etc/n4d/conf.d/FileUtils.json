@@ -1,0 +1,26 @@
+{
+    "SETUP": {
+        "type": "python",
+        "path": "FileUtils.py",
+        "class": "FileUtils"
+    },
+    "METHODS": {
+        "backup": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "restore": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "listDir": {
+            "allowed_groups": [
+                "*"
+            ]
+        }
+    }
+}

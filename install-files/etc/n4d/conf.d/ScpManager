@@ -1,9 +1,0 @@
-[SETUP]
-type=python
-path=ScpManager.py
-class=ScpManager
-[METHODS]
-send_file=anonymous
-send_dir=anonymous
-unrestricted_get_file=sudo,admins
-(us)get_file=*

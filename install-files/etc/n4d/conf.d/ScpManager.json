@@ -1,0 +1,32 @@
+{
+    "SETUP": {
+        "type": "python",
+        "path": "ScpManager.py",
+        "class": "ScpManager"
+    },
+    "METHODS": {
+        "send_file": {
+            "allowed_groups": [
+                "anonymous"
+            ]
+        },
+        "send_dir": {
+            "allowed_groups": [
+                "anonymous",
+            ]
+        },
+        "unrestricted_get_file": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "get_file": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ],
+	    "protected_user": 0
+        }
+    }
+}
