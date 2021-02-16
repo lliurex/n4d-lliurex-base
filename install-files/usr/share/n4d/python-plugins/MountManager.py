@@ -8,6 +8,8 @@ import os.path
 import shutil
 import tempfile
 
+import n4d.responses
+
 def mm_check_user(f):
 	
 	def wrap(*args,**kw):
@@ -24,7 +26,7 @@ def mm_check_user(f):
 			return f(*args)
 			
 		except Exception as e:
-			print e
+			print(e)
 			return False
 			
 	return wrap
@@ -81,7 +83,8 @@ class MtabParser:
 
 class MountManager:
 	
-	MOUNT_LOG="/var/log/n4d/mount"
+	MOUNT_LOG="/var/log/n4d/mountmanager"
+	MOUNT_FAILED=-10
 	
 	def __init__(self):
 		
@@ -111,13 +114,14 @@ class MountManager:
 		try:
 			ret=self.libc.mount(source,target,type_,0,args)
 			if ret==0:
-				return (True,0)
+				return n4d.responses.build_successful_call_response()
 			else:
-				return (False,ret)
+				return n4d.responses.build_failed_call_response(MountManager.MOUNT_FAILED)
 				
 		except Exception as e:
-			self.log(e)
-			return(False,str(e))
+			#self.log(e)
+			return n4d.responses.build_failed_call_response(ret_msg=str(e))
+
 		
 	#def mount
 	
@@ -140,13 +144,13 @@ class MountManager:
 						args+=",addr="+ret
 						
 			except Exception as e:
-				print e
+				print(e)
 				
-			mnt_list=self.mount_list()
+			mnt_list=self._mount_list()
 			if source in mnt_list:
 				for src_item in mnt_list[source]:
 					if src_item["dst"]==target:
-						return True
+						return n4d.responses.build_successful_call_response()
 				
 			if not os.path.exists(target):
 				prevmask = os.umask(0)
@@ -170,13 +174,14 @@ class MountManager:
 				info["pass"]=0
 				mp.add_line(info)
 				
-				return True
+				return n4d.responses.build_successful_call_response()
 			else:
-				return False
+				return n4d.responses.build_failed_call_response(MountManager.MOUNT_FAILED)
+				
 		except Exception as e:
-			print e
-			
-			return False
+			print(e)
+			return n4d.responses.build_failed_call_response(ret_msg=str(e))
+
 		
 	#def restricted_mount
 	
@@ -184,9 +189,10 @@ class MountManager:
 
 		try:
 			ret=self.libc.umount(mounted_dir)
+			return n4d.responses.build_successful_call_response()
 		except Exception as e:
-			self.log(e)
-			return(False,str(e))
+			#self.log(e)
+			return n4d.responses.build_failed_call_response(ret_msg=str(e))
 	
 	#def umount
 	
@@ -200,17 +206,17 @@ class MountManager:
 				ret=self.libc.umount2(mounted_dir,ctypes.c_int(2))
 
 			if ret==0:
-				return True
+				return n4d.responses.build_successful_call_response()
 			else:
-				return False
+				return n4d.responses.build_failed_call_response(MountManager.MOUNT_FAILED)
 				
 		except Exception as e:
 			self.log(e)
-			return False
+			return n4d.responses.build_failed_call_response(ret_msg=str(e))
 		
 	#def restricted_umount
 	
-	def mount_list(self):
+	def _mount_list(self):
 		
 		f=open("/proc/mounts")
 		lines=f.readlines()
@@ -250,14 +256,14 @@ class MountManager:
 		if src in mnt_list:
 			
 			if username==None:
-				return [True,mnt_list[src][0]["dst"]]
+				return n4d.responses.build_successful_call_response((True,mnt_list[src][0]["dst"]]))
 			
 			for item in mnt_list[src]:
 				if "options" in item:
 					if "username="+username in item["options"]:
-						return [True,item["dst"]]
+						return n4d.responses.build_successful_call_response((True,item["dst"]))
 		
-		return [False,None]
+		return n4d.responses.build_successful_call_response((False,None))
 		
 	#def  is_src_mounted
 	

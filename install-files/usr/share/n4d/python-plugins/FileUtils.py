@@ -1,16 +1,20 @@
 import exceptions
+import n4d.responses
 
 class FileUtils:
+
+	NOT_ENOUGH_SPACE=-10
+	PERMISSION_DENIED=-20
 
 	def backup(self,target,dest_file):
 		aux_temp = tempfile.mkdtemp()
 		
 		cmd="df " + os.path.dirname(dest_file) + " | awk 'END{print $4}'"
-		available_space = int(subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE).communicate()[0].strip())
+		available_space = int(subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE).communicate()[0].decode("utf-8").strip())
 		cmd1="du -cs " + " ".join(target) + " | awk 'END{print $1}'"
-		used_space = int(subprocess.Popen(cmd1,shell=True,stdout=subprocess.PIPE).communicate()[0].strip())
+		used_space = int(subprocess.Popen(cmd1,shell=True,stdout=subprocess.PIPE).communicate()[0].decode("utf-8").strip())
 		if available_space < used_space * 0.05:
-			return [False,'Not enough space on '+os.path.dirname(dest_file)]
+			return n4d.responses.build_failed_call_response(FileUtils.NOT_ENOUGH_SPACE)
 		try:
 			tar = tarfile.open(dest_file,'w:gz')
 			for x in target:
@@ -23,16 +27,16 @@ class FileUtils:
 				tar.add(acl_folder,arcname='._acls')
 				shutil.rmtree(acl_folder)
 			tar.close()
-			return [True,dest_file]
+			return n4d.responses.build_successful_call_response(dest_file)
 
 		except exceptions.IOError as e:
 			if e.errno == 28:
 				shutil.rmtree(file_path)
-				return [False,'Not enough space on ' + os.path.dirname(dest_file)]
+				return n4d.responses.build_failed_call_response(FileUtils.NOT_ENOUGH_SPACE)
 			else:
-				return [False,str(e)]
+				return n4d.responses.build_failed_call_response(ret_msg=str(e))
 		except Exception as e:
-				return [False,str(e)]
+				return n4d.responses.build_failed_call_response(ret_msg=str(e))
 	#def backup
 
 	def restore(self,backup_file,dest):
@@ -53,15 +57,15 @@ class FileUtils:
 					for x in os.listdir(acl_folder):
 						os.system('setfacl -R --restore='+os.path.join(acl_folder,x))
 				shutil.rmtree(os.path.join(dest,'._acls'))
-				return [True,]
+				return n4d.responses.build_successful_call_response()
 
 		except exceptions.IOError as e:
 			if e.errno == 28:
-				return [False,'Not enough space on ' + os.path.dirname(dest)]
+				return n4d.responses.build_failed_call_response(FileUtils.NOT_ENOUGH_SPACE)
 			else:
-				return [False,str(e)]
+				return n4d.responses.build_failed_call_response(ret_msg=str(e))
 		except Exception as e:
-				return [False,str(e)]
+				return n4d.responses.build_failed_call_response(ret_msg=str(e))
 
 	#def restore
 
@@ -73,7 +77,8 @@ class FileUtils:
 				result['folders'] = folders
 				result['files'] = files
 				break
-			return {'status':True,'msg':result}
-		return {'status':False,'msg':'Permission deny'}
+			return n4d.responses.build_successful_call_response(result)
+		
+		return n4d.responses.build_failed_call_response(FileUtils.PERMISSION_DENIED,ret_msg="Permission denied")
 		
 	#de listDir

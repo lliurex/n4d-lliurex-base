@@ -1,7 +1,12 @@
 import os.path
 import subprocess
+import n4d.responses
 
 class LliurexVersion:
+	
+	LLIUREX_VERSION_NOT_FOUND=-20
+	LLIUREX_VERSION_ERROR=-20
+	
 	
 	def lliurex_version(self,options=""):
 		
@@ -10,16 +15,19 @@ class LliurexVersion:
 			try:
 				p=subprocess.Popen("lliurex-version " + options,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 				output,stderr=p.communicate()
+				output=output.decode("utf-8")
+				stderr=stderr.decode("utf-8")
 				if output=="":
 					output=stderr
 				output=output.strip("\n")
-				return(True,output)
+				return n4d.responses.build_successful_call_response(output)
 				
-			except:
-				return (False, "Error executing lliurex-version")
+			except Exception as e:
+				
+				return n4d.responses.build_failed_call_response(LliurexVersion.LLIUREX_VERSION_ERROR,str(e))
 			
 		else:
-			return (False,"lliurex-version not found")
+			return n4d.responses.build_failed_call_response(LliurexVersion.LLIUREX_VERSION_NOT_FOUND)
 		
 	#def lliurex_version
 	
@@ -32,14 +40,15 @@ class LliurexVersion:
 				output=output.strip("\n")
 				list_flavor = output.slipt(',')
 				if version in list_flavor:
-					return (True,"I'm a " + version)
+					return n4d.responses.build_successful_call_response(True)
 				else:
-					return (False,"I'm not a " + version)
+					return n4d.responses.build_successful_call_response(False)
 			except:
-				return (False, "Error executing lliurex-version")
+				return n4d.responses.build_failed_call_response(LliurexVersion.LLIUREX_VERSION_ERROR,str(e))
 			
 		else:
-			return (False,"lliurex-version not found")
+			return n4d.responses.build_failed_call_response(LliurexVersion.LLIUREX_VERSION_NOT_FOUND)
+			
 	#def check_flavor
 	
 #class LliurexVersion

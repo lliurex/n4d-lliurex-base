@@ -6,8 +6,11 @@ import grp
 import multiprocessing
 import glob
 
+import n4d.responses
 
 class ScpManager:
+	
+	WRITE_ERROR=-10
 	
 	def __init__(self):
 		
@@ -31,11 +34,12 @@ class ScpManager:
 			client.connect(ip,username=user,password=password)
 			scp_client= scp.SCPClient(client.get_transport())
 			scp_client.put(source, dest)
-			return {"status":True,"msg":""}
+			return n4d.responses.build_successful_call_response()
 			
 		except Exception as e:
 			
-			return {"status":False,"msg":str(e)}
+			return n4d.responses.build_failed_call_response(ret_msg=str(e))
+
 		
 	#def send_file
 	
@@ -56,12 +60,12 @@ class ScpManager:
 						scp_client.put(item, dest)
 					else:
 						scp_client.put(item,recursive=True,remote_path=dest)
-						
-			return {"status":True,"msg":""}
+			
+			return n4d.responses.build_successful_call_response()
 
 		except Exception as e:
 			
-			return {"status":False,"msg":str(e)}
+			return n4d.responses.build_failed_call_response(ret_msg=str(e))
 			
 	#def send_dir
 	
@@ -85,10 +89,11 @@ class ScpManager:
 		
 		try:
 			self._get_file(user,password,ip,source,dest)
-			return {"status":True,"msg":""}
+			return n4d.responses.build_successful_call_response()
+			
 		except Exception as e:
 			
-			return {"status":False,"msg":str(e)}
+			return n4d.responses.build_failed_call_response(ret_msg=str(e))
 			
 	#def unrestricted_get_file
 	
@@ -122,17 +127,16 @@ class ScpManager:
 			p.join()
 			ok=ret_queue.get()
 			if not ok:
-				return {"status":False,"msg":"'%s' is not allowed to write in '%s'"%(user,dest_path)}
+				msg="'%s' is not allowed to write in '%s'"%(user,dest_path)
+				return n4d.responses.build_failed_call_response(ScpManager.WRITE_ERROR,ret_msg=msg)
 			
 		try:
 			
 			self._get_file(remote_user,password,ip,source,dest)
-			
-			return {"status":True,"msg":""}
+			return n4d.responses.build_successful_call_response()
 			
 		except Exception as e:
-			
-			return {"status":False,"msg":str(e)}		
+			return n4d.responses.build_failed_call_response(ret_msg=str(e))
 		
 	#def get_file
 	
