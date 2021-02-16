@@ -1,4 +1,4 @@
-import exceptions
+import builtins
 import n4d.responses
 
 class FileUtils:
@@ -29,7 +29,7 @@ class FileUtils:
 			tar.close()
 			return n4d.responses.build_successful_call_response(dest_file)
 
-		except exceptions.IOError as e:
+		except builtins.IOError as e:
 			if e.errno == 28:
 				shutil.rmtree(file_path)
 				return n4d.responses.build_failed_call_response(FileUtils.NOT_ENOUGH_SPACE)
@@ -59,7 +59,7 @@ class FileUtils:
 				shutil.rmtree(os.path.join(dest,'._acls'))
 				return n4d.responses.build_successful_call_response()
 
-		except exceptions.IOError as e:
+		except builtins.IOError as e:
 			if e.errno == 28:
 				return n4d.responses.build_failed_call_response(FileUtils.NOT_ENOUGH_SPACE)
 			else:
