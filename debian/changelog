@@ -1,3 +1,9 @@
+n4d-lliurex-base (0.31) focal; urgency=medium
+
+  * Removed old diversion
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Tue, 16 Feb 2021 14:18:52 +0100
+
 n4d-lliurex-base (0.30) focal; urgency=medium
 
   * First focal release

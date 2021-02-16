@@ -11,13 +11,6 @@ case "$1" in
    configure)
 	deb-systemd-invoke restart n4d || true
 
-	 if [ ! -r ${DIVERT_FILE} ] ; then
-
-		dpkg-divert --package ${PACKAGE_NAME} --rename --quiet --add --divert  ${DIVERT_FILE}  ${ORIGINAL_FILE}
-                ln -fs ${LLIUREX_FILE}  ${ORIGINAL_FILE}
-	fi
-
-
    ;;
 
    abort-upgrade|abort-remove|abort-deconfigure)
