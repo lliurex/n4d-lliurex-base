@@ -56,4 +56,4 @@ class LliurexVersion:
 if __name__=="__main__":
 	
 	llv=LliurexVersion()
-	print llv.lliurex_version()
+	print(llv.lliurex_version())

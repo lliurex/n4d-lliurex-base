@@ -12,7 +12,7 @@
         },
         "send_dir": {
             "allowed_groups": [
-                "anonymous",
+                "anonymous"
             ]
         },
         "unrestricted_get_file": {

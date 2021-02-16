@@ -256,7 +256,7 @@ class MountManager:
 		if src in mnt_list:
 			
 			if username==None:
-				return n4d.responses.build_successful_call_response((True,mnt_list[src][0]["dst"]]))
+				return n4d.responses.build_successful_call_response((True,mnt_list[src][0]["dst"]))
 			
 			for item in mnt_list[src]:
 				if "options" in item:
@@ -274,4 +274,4 @@ if __name__=="__main__":
 	
 	mm=MountManager()
 	
-	print mm.mount_list()
+	print(mm.mount_list())
