@@ -25,7 +25,7 @@ class ScpManager:
 	#def 
 	
 	
-	def send_file(self,user,password,ip,source,dest,recursive=False,content_only=False):
+	def send_file(self,user,password,ip,source,dest):
 		
 		try:
 			
