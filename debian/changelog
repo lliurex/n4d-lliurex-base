@@ -1,3 +1,9 @@
+n4d-lliurex-base (0.33) focal; urgency=medium
+
+  * removed useless options in scpmanager.send_file 
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Tue, 01 Jun 2021 16:51:03 +0200
+
 n4d-lliurex-base (0.32) focal; urgency=medium
 
   * Fixed python2 to python3 bugs
