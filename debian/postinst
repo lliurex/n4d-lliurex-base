@@ -14,7 +14,6 @@ case "$1" in
 	n4d-modules enable-plugin /etc/n4d/conf.d/LliurexVersion.json || true
 	n4d-modules enable-plugin /etc/n4d/conf.d/MountManager.json || true
 	n4d-modules enable-plugin /etc/n4d/conf.d/ScpManager.json || true
-	deb-systemd-invoke restart n4d || true
 
    ;;
 

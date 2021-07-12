@@ -1,4 +1,4 @@
-n4d-lliurex-base (0.35.1) focal; urgency=medium
+n4d-lliurex-base (0.35.2) focal; urgency=medium
 
   * hot loading plugins instead of restarting service
 
