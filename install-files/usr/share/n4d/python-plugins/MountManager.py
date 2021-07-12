@@ -88,7 +88,7 @@ class MountManager:
 	
 	def __init__(self):
 		
-		self.libc=ctypes.CDLL(ctypes.util.find_library("c"))
+		self.libc=ctypes.CDLL(ctypes.util.find_library("c"),use_errno=True)
 		
 	#def init
 	
@@ -200,6 +200,7 @@ class MountManager:
 	def restricted_umount(self,user,mounted_dir,lazy=False):
 	
 		try:
+	
 			if not lazy:
 				ret=self.libc.umount(mounted_dir.encode("utf-8"))
 			else:
@@ -208,10 +209,10 @@ class MountManager:
 			if ret==0:
 				return n4d.responses.build_successful_call_response()
 			else:
-				return n4d.responses.build_failed_call_response(MountManager.MOUNT_FAILED)
+				return n4d.responses.build_failed_call_response(MountManager.MOUNT_FAILED,os.strerror(ctypes.get_errno()))
 				
 		except Exception as e:
-			self.log(e)
+
 			return n4d.responses.build_failed_call_response(ret_msg=str(e))
 		
 	#def restricted_umount
