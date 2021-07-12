@@ -1,3 +1,9 @@
+n4d-lliurex-base (0.35.1) focal; urgency=medium
+
+  * hot loading plugins instead of restarting service
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 12 Jul 2021 11:30:45 +0200
+
 n4d-lliurex-base (0.35) focal; urgency=medium
 
   * Fixed wrap function in mountmanager.
