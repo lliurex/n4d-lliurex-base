@@ -14,9 +14,9 @@ def mm_check_user(f):
 	
 	def wrap(*args,**kw):
 		try:
-			if f.func_name=="restricted_mount":
+			if f.__name__=="restricted_mount":
 				check=args[3]
-			elif f.func_name=="restricted_umount":
+			elif f.__name__=="restricted_umount":
 				check=args[2]
 			else:
 				check=""
@@ -26,8 +26,8 @@ def mm_check_user(f):
 			return f(*args)
 			
 		except Exception as e:
-			print(e)
-			return False
+			WRAP_ERROR=-100
+			return n4d.responses.build_failed_call_response(WRAP_ERROR,str(e))
 			
 	return wrap
 
