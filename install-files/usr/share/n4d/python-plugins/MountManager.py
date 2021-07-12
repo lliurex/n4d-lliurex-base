@@ -161,7 +161,7 @@ class MountManager:
 				os.umask(prevmask)
 				
 			
-			ret=self.libc.mount(ctypes.c_char_p(source),ctypes.c_char_p(target),ctypes.c_char_p(type_),0,ctypes.c_char_p(args))
+			ret=self.libc.mount(source.encode("utf-8"),target.encode("utf-8"),ctypes.c_char_p(type_),0,ctypes.c_char_p(args))
 			if ret==0:
 				mp=MtabParser()
 				mp.open()
@@ -188,7 +188,7 @@ class MountManager:
 	def umount(self,mounted_dir):
 
 		try:
-			ret=self.libc.umount(mounted_dir)
+			ret=self.libc.umount(mounted_dir.encode("utf-8"))
 			return n4d.responses.build_successful_call_response()
 		except Exception as e:
 			#self.log(e)
@@ -201,9 +201,9 @@ class MountManager:
 	
 		try:
 			if not lazy:
-				ret=self.libc.umount(mounted_dir)
+				ret=self.libc.umount(mounted_dir.encode("utf-8"))
 			else:
-				ret=self.libc.umount2(mounted_dir,ctypes.c_int(2))
+				ret=self.libc.umount2(mounted_dir.encode("utf-8"),ctypes.c_int(2))
 
 			if ret==0:
 				return n4d.responses.build_successful_call_response()
