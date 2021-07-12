@@ -1,3 +1,9 @@
+n4d-lliurex-base (0.34) focal; urgency=medium
+
+  * Fixed mount and umount. From str to byte args
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 12 Jul 2021 10:10:58 +0200
+
 n4d-lliurex-base (0.33) focal; urgency=medium
 
   * removed useless options in scpmanager.send_file 
