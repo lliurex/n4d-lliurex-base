@@ -23,8 +23,7 @@
         },
         "get_file": {
             "allowed_groups": [
-                "sudo",
-                "admins"
+                "*"
             ],
 	    "protected_user": 0
         }
