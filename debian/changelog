@@ -1,3 +1,9 @@
+n4d-lliurex-base (0.37) focal; urgency=medium
+
+  * Fixed scpmanager.get_file permissions
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 06 Sep 2021 10:37:15 +0200
+
 n4d-lliurex-base (0.36) focal; urgency=medium
 
   * Capturing errorno when mounting/umounting
