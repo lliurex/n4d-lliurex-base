@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -e
+
+
+ORIGINAL_FILE="/usr/lib/python2.7/xmlrpclib.py"
+DIVERT_FILE="$ORIGINAL_FILE.divert"
+LLIUREX_FILE="/usr/share/n4d-lliurex-base/diversions/xmlrpclib.py"
+
+case "$1" in
+   configure)
+	
+	n4d-modules enable-plugin /etc/n4d/conf.d/FileUtils.json || true
+	n4d-modules enable-plugin /etc/n4d/conf.d/LliurexVersion.json || true
+	n4d-modules enable-plugin /etc/n4d/conf.d/MountManager.json || true
+	n4d-modules enable-plugin /etc/n4d/conf.d/ScpManager.json || true
+
+   ;;
+
+   abort-upgrade|abort-remove|abort-deconfigure)
+   ;;
+
+   *)
+       exit 1
+   ;;
+esac
+
+#DEBHELPER#
+
+exit 0

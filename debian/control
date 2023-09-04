@@ -1,0 +1,15 @@
+Source: n4d-lliurex-base
+Section: admin
+Priority: extra
+Maintainer: Equipo LliureX <lliurex@gva.es>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.7
+Homepage: http://www.lliurex.net
+#Vcs-Svn: http://svn.lliurex.net/pandora/n4d-lliurex-base/trunk
+
+Package: n4d-lliurex-base
+Architecture: all
+Pre-Depends: n4d (>= 0.900)
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-llxnet, python3-scp
+Description: Lliurex n4d base plugins
+ Lliurex n4d plugins and custom variables
