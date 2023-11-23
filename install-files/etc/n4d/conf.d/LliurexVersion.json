@@ -14,6 +14,16 @@
             "allowed_groups": [
                 "anonymous"
             ]
+        },
+        "flavors" : {
+            "allowed_groups" : [
+                "anonymous"
+            ]
+        },
+        "version" : {
+            "allowed_groups" : [
+                "anonymous"
+            ]
         }
     }
 }
